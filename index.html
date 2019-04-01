@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.5.1/hint.base.css" rel="stylesheet"/>
+        <style>
+            body {
+                font-family: 'Source Sans Pro';
+            }
+        </style>
+
+        <title>Kclean: Clean Your Keyboard Without Worrying About Unintended Actions</title>
+    </head>
+    <body class="bg-orange-lightest overflow-hidden">
+        <div class="max-w-md mx-auto mt-20">
+            <h1>Kclean</h1>
+            <h4 class="border-b border-orange-lighter pb-5 mt-1 font-normal opacity-50">
+                Clean Your Keyboard Without Worrying About Side-effects
+            </h4>
+            <p class="leading-normal pt-4 text-lg">
+                Cleaning your keyboard and don't want to trigger an unintended 
+                action when you push the keys?
+            <p class="leading-normal pt-4 text-lg"> 
+                This web page will consume (<span class="hint--bottom cursor-pointer hint--large border-b border-dashed border-black"
+                    aria-label="Certain keyboard actions (such as increasing brightness, capslock, spotlight search)
+                    cannot be killed.">almost</span>) every 
+                key press and click, so you can clean your keyboard peacefully.
+            </p>
+            <p class="leading-normal my-4 text-lg bg-indigo-light text-white py-3 px-2 rounded">
+                Press any key to start, and <strong>ESC</strong> to exit.
+            </p>
+        </div>
+        <canvas class="h-full w-full" id="pointerLockCanvas"></canvas>
+
+        <a class="no-underline border-b border-blue text-blue absolute pin-b pin-r m-2"
+            href="https://github.com/shubhamjain/kclean">
+            Github Source
+        </a>
+        <script>
+            function getPointerLock () {
+                document.getElementById("pointerLockCanvas").requestPointerLock();
+            };
+
+            document.addEventListener('click', getPointerLock);
+
+            document.addEventListener('keydown', function (e) {
+                getPointerLock ();
+                e.preventDefault ();
+            });
+
+            document.addEventListener('mousewheel', function (e) {
+                getPointerLock();
+            })
+        </script>
+    </body>
+</html>
